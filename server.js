@@ -33,7 +33,29 @@ app.get('/logout', function(request, response) {
 app.get('/stats', function(request, response) {
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('stats');
+
+
+  fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
+  console.log(fileContent);
+  var logged_in = false;
+  fileContentar = fileContent.split(/,|\n/);
+  console.log(fileContentar);
+
+
+
+  userss = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
+  console.log(userss);
+  var logged_in = false;
+  usersar = userss.split(/,|\n/);
+  console.log(usersar);
+
+  var senddata = {
+    villains: fileContentar,
+    users: usersar
+  };
+  response.render('stats', {
+    data: senddata
+  });
 });
 
 app.get('/about', function(request, response) {
@@ -79,4 +101,5 @@ app.post('/:user/game', function(request, response) {
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.send(JSON.stringify(user_data));
+  response.render('results');
 });

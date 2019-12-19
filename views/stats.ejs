@@ -3,10 +3,9 @@
 <head>
   <title>P,R,S - Stats</title>
   <link rel="stylesheet" href="styles/style.css">
- </head>
+</head>
 <body>
   <% include global/header %>
-
   <div id="stats">
     <h2>Stats- ____ games played</h2>
     <table>
@@ -31,12 +30,37 @@
         <td> </td>
         <td> </td>
       </tr>
-    </table>
-  </div>
+      <ul>
+        <%for(var i = 5; i<data.users.length-4; i+=5){%>
+          <a href="/<=data.users[i]%>/game">
+            <tr>
+              <th><%=data.users[i]%></th>
 
-  <footer>
-    Brought to you by the cool kids of Software Engineering - Fall, 2018.
-  </footer>
-  <script src="scripts/scripts.js"></script>
- </body>
-</html>
+              <td></td>    <td></td>    <td></td>    <td></td>
+
+            </tr>
+          </a>
+          <%}%>
+        </ul>
+        <ul>
+          <%for(var i = 9; i<data.villains.length-9; i+=9){%>
+            <a href="/<=data.villains[i]%>/game">
+              <tr>
+                <th><%=data.villains[i]%></th>
+                <td><%=data.villains[i+4]%></td>
+                <td><%=data.villains[i+5]%> </td>
+                <td><%=data.villains[i+6]%> </td>
+                <td><%=data.villains[i+7]%> </td>
+              </tr>
+            </a>
+            <%}%>
+          </ul>
+        </table>
+      </div>
+
+      <footer>
+        Brought to you by the cool kids of Software Engineering - Fall, 2018.
+      </footer>
+      <script src="scripts/scripts.js"></script>
+    </body>
+    </html>

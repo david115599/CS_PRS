@@ -1,1 +1,1 @@
-web: node walkingskeleton.js
+web: node server.js
