@@ -11,46 +11,42 @@
     <table>
       <tr>
         <th class="top_row">Player Name</th>
-        <th class="top_row">Paper %</th>
-        <th class="top_row">Rock %</th>
-        <th class="top_row">Scissors %</th>
-        <th class="top_row">Wins %</th>
+        <th class="top_row">Games Won</th>
+        <th class="top_row">Games Tied</th>
+        <th class="top_row">Games Lost</th>
       </tr>
-      <tr>
-        <th><span class="player_name_span"></span>  </th>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <th> B(r)owser </th>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
+
       <ul>
         <%for(var i = 5; i<data.users.length-4; i+=5){%>
           <a href="/<=data.users[i]%>/game">
             <tr>
               <th><%=data.users[i]%></th>
+              <td><%=data.users[i+1]%></td>
+              <td><%=data.users[i+2]%></td>
+              <td><%=data.users[i+3]%></td>
 
-              <td></td>    <td></td>    <td></td>    <td></td>
 
             </tr>
           </a>
           <%}%>
         </ul>
+      </table>
+      <table>
+        <tr>
+          <th class="top_row">Player Name</th>
+          <th class="top_row">Games Won</th>
+          <th class="top_row">Games Tied</th>
+          <th class="top_row">Games Lost</th>
+        </tr>
+        <tr>
         <ul>
-          <%for(var i = 9; i<data.villains.length-9; i+=9){%>
+          <%for(var i = 10; i<data.villains.length-10; i+=10){%>
             <a href="/<=data.villains[i]%>/game">
               <tr>
                 <th><%=data.villains[i]%></th>
-                <td><%=data.villains[i+4]%></td>
-                <td><%=data.villains[i+5]%> </td>
-                <td><%=data.villains[i+6]%> </td>
-                <td><%=data.villains[i+7]%> </td>
+                <td><%=data.villains[i+7]%></td>
+                <td><%=data.villains[i+8]%> </td>
+                <td><%=data.villains[i+9]%> </td>
               </tr>
             </a>
             <%}%>
