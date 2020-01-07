@@ -1,8 +1,8 @@
 {
-  "name": "Walking_Skeleton_Project",
+  "name": "CS_PRS",
   "version": "1.0.0",
   "description": "",
-  "main": "walkingskeleton.js",
+  "main": "Server.js",
   "dependencies": {
     "ejs": "^2.7.4",
     "express": "^4.16.4",
