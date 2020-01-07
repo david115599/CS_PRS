@@ -14,6 +14,7 @@
         <th class="top_row">Games Won</th>
         <th class="top_row">Games Tied</th>
         <th class="top_row">Games Lost</th>
+        <th class="top_row">Win/Loss Ratio</th>
       </tr>
 
       <ul>
@@ -24,6 +25,7 @@
               <td><%=data.users[i+1]%></td>
               <td><%=data.users[i+2]%></td>
               <td><%=data.users[i+3]%></td>
+              <td><%=data.users[i+1]/data.users[i+3]%></td>
 
 
             </tr>
@@ -37,26 +39,28 @@
           <th class="top_row">Games Won</th>
           <th class="top_row">Games Tied</th>
           <th class="top_row">Games Lost</th>
+          <th class="top_row">Win/Loss Ratio</th>
         </tr>
         <tr>
-        <ul>
-          <%for(var i = 10; i<data.villains.length-10; i+=10){%>
-            <a href="/<=data.villains[i]%>/game">
-              <tr>
-                <th><%=data.villains[i]%></th>
-                <td><%=data.villains[i+7]%></td>
-                <td><%=data.villains[i+8]%> </td>
-                <td><%=data.villains[i+9]%> </td>
-              </tr>
-            </a>
-            <%}%>
-          </ul>
-        </table>
-      </div>
+          <ul>
+            <%for(var i = 10; i<data.villains.length-10; i+=10){%>
+              <a href="/<=data.villains[i]%>/game">
+                <tr>
+                  <th><%=data.villains[i]%></th>
+                  <td><%=data.villains[i+7]%></td>
+                  <td><%=data.villains[i+8]%> </td>
+                  <td><%=data.villains[i+9]%> </td>
+                  <td><%=data.villains[i+7]/data.villains[i+9]%> </td>
+                </tr>
+              </a>
+              <%}%>
+            </ul>
+          </table>
+        </div>
 
-      <footer>
-        Brought to you by the cool kids of Software Engineering - Fall, 2018.
-      </footer>
-      <script src="scripts/scripts.js"></script>
-    </body>
-    </html>
+        <footer>
+          Brought to you by the cool kids of Software Engineering - Fall, 2018.
+        </footer>
+        <script src="scripts/scripts.js"></script>
+      </body>
+      </html>

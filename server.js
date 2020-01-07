@@ -39,15 +39,41 @@ app.get('/stats', function(request, response) {
   console.log(fileContent);
   var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
+  filesortar = fileContent.split(/\n/);
   console.log(fileContentar);
+  console.log(filesortar);
+
+  filesortar.sort(function(a,b){
+    if (filesortar.indexOf(a)==0) {
+      return(false);
+    }
+    if (filesortar.indexOf(b)==0) {
+      return(true);
+    }
+
+    if ((fileContentar[filesortar.indexOf(a+10)]+1)/(((fileContentar[filesortar.indexOf(a+10)+2]+(fileContentar[filesortar.indexOf(a+10)+3]))))>=(fileContentar[filesortar.indexOf(b+10)]+1)/(((fileContentar[filesortar.indexOf(b+10)+2]+(fileContentar[filesortar.indexOf(b+10)+3]))))) {
+      return(true);
+    }
+    else {
+      return(false);
+    }
+  });
+  console.log(filesortar);
+  fileContentar = filesortar.toString().split(/,|\n/);
+
+  /*
+  <td><%=data.users[i+1]%></td>
+  <td><%=data.users[i+2]%></td>
+  <td><%=data.users[i+3]%></td>
+  */
 
 
 
   userss = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
-  console.log(userss);
+  //console.log(userss);
   var logged_in = false;
   usersar = userss.split(/,|\n/);
-  console.log(usersar);
+  //  console.log(usersar);
 
   var senddata = {
     villains: fileContentar,
