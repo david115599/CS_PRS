@@ -2,18 +2,27 @@
   "name": "CS_PRS",
   "version": "1.0.0",
   "description": "",
-  "main": "Server.js",
+  "main": "server.js",
   "dependencies": {
     "ejs": "^2.7.4",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "fs": "0.0.1-security",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david115599/CS_PRS.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/david115599/CS_PRS/issues"
+  },
+  "homepage": "https://github.com/david115599/CS_PRS#readme"
 }
