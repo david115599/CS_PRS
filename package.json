@@ -1,6 +1,7 @@
 {
-  "name": "CS_PRS",
+  "name": "rps-d-b",
   "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "dependencies": {
     "ejs": "^2.7.4",
@@ -13,16 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/david115599/CS_PRS.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/david115599/CS_PRS/issues"
-  },
-  "homepage": "https://github.com/david115599/CS_PRS#readme",
-  "description": ""
+  "license": "ISC"
 }
