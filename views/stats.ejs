@@ -15,18 +15,25 @@
         <th class="top_row">Games Tied</th>
         <th class="top_row">Games Lost</th>
         <th class="top_row">Win/Loss Ratio</th>
+        <th class="top_row">Win%</th>
+        <th class="top_row">Paper</th>
+        <th class="top_row">Rock</th>
+        <th class="top_row">Scissors</th>
       </tr>
 
       <ul>
-        <%for(var i = 5; i<data.users.length-4; i+=5){%>
+        <%for(var i = 0; i<data.users.length-1; i+=1){%>
           <a href="/<=data.users[i]%>/game">
             <tr>
-              <th><%=data.users[i]%></th>
-              <td><%=data.users[i+1]%></td>
-              <td><%=data.users[i+2]%></td>
-              <td><%=data.users[i+3]%></td>
-              <td><%=data.users[i+1]/data.users[i+3]%></td>
-
+              <th><%=data.users[i].name%></th>
+              <td><%=data.users[i].wins%></td>
+              <td><%=data.users[i].tied%> </td>
+              <td><%=data.users[i].losses%> </td>
+              <td><%=data.users[i].wins/data.users[i].losses%> </td>
+              <td><%=(data.users[i].wins/(data.users[i].losses+data.users[i].tied+data.users[i].wins))%> </td>
+              <th><%=data.users[i].paper%></th>
+              <th><%=data.users[i].rock%></th>
+              <th><%=data.users[i].scissors%></th>
 
             </tr>
           </a>
@@ -40,17 +47,25 @@
           <th class="top_row">Games Tied</th>
           <th class="top_row">Games Lost</th>
           <th class="top_row">Win/Loss Ratio</th>
+          <th class="top_row">Win%</th>
+          <th class="top_row">Paper</th>
+          <th class="top_row">Rock</th>
+          <th class="top_row">Scissors</th>
         </tr>
         <tr>
           <ul>
-            <%for(var i = 10; i<data.villains.length-10; i+=10){%>
+            <%for(var i = 0; i<data.villains.length-1; i+=1){%>
               <a href="/<=data.villains[i]%>/game">
                 <tr>
-                  <th><%=data.villains[i]%></th>
-                  <td><%=data.villains[i+7]%></td>
-                  <td><%=data.villains[i+8]%> </td>
-                  <td><%=data.villains[i+9]%> </td>
-                  <td><%=data.villains[i+7]/data.villains[i+9]%> </td>
+                  <th><%=data.villains[i].name%></th>
+                  <td><%=data.villains[i].wins%></td>
+                  <td><%=data.villains[i].tied%> </td>
+                  <td><%=data.villains[i].losses%> </td>
+                  <td><%=data.villains[i].wins/data.villains[i].losses%> </td>
+                  <td><%=(data.villains[i].wins/(data.villains[i].losses+data.villains[i].tied+data.villains[i].wins))*10000%> </td>
+                  <th><%=data.villains[i].paper%></th>
+                  <th><%=data.villains[i].rock%></th>
+                  <th><%=data.villains[i].scissors%></th>
                 </tr>
               </a>
               <%}%>

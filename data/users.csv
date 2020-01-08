@@ -1,5 +1,5 @@
-name,games_played,games_won,games_lost,password
-mario,10,0,8,1234
-luigi,9,2,6,green_machine
-toad,8,8,0,i<3nyc
-peach,7,5,1,xoxoxo
+name,password,paper,rock,scissors,paper_strategy,rock_strategy,scissors_strategy,wins,tied,losses
+mario,1234,1,1,1,1,1,1,10,0,8
+luigi,green_machine,1,1,1,1,1,1,9,2,6
+toad,i<3nyc,1,1,1,1,1,1,8,8,0
+peach,xoxoxo,1,1,1,1,1,1,7,5,1

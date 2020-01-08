@@ -36,30 +36,35 @@ app.get('/stats', function(request, response) {
 
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
-  console.log(fileContent);
+//  console.log(fileContent);
   var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
-  console.log(fileContentar);
-  console.log(filesortar);
+  var villianstats = [];
+  for (var i = 1; i < filesortar.length-1; i++) {
+    villianstats[i] = {};
+    for (var q = 0; q < 10; q++) {
+      villianstats[i][fileContentar[q]]=fileContentar[i*10+q];
+    }
+  }
+  //console.log(villianstats);
 
-  filesortar.sort(function(a,b){
-    if (filesortar.indexOf(a)==0) {
-      return(false);
+  villianstats.sort(function(a,b){
+if ((b.wins)/(b.tied+b.losses)) {
+}
+else {
+    return(-1);
+}
+if ((a.wins)/(a.tied+a.losses)) {
+}
+else {
+    return(1);
+}
+return ((b.wins)/(b.tied+b.losses+b.wins)) - ((a.wins)/(a.tied+a.losses+a.wins));
     }
-    if (filesortar.indexOf(b)==0) {
-      return(true);
-    }
-
-    if ((fileContentar[filesortar.indexOf(a+10)]+1)/(((fileContentar[filesortar.indexOf(a+10)+2]+(fileContentar[filesortar.indexOf(a+10)+3]))))>=(fileContentar[filesortar.indexOf(b+10)]+1)/(((fileContentar[filesortar.indexOf(b+10)+2]+(fileContentar[filesortar.indexOf(b+10)+3]))))) {
-      return(true);
-    }
-    else {
-      return(false);
-    }
-  });
-  console.log(filesortar);
-  fileContentar = filesortar.toString().split(/,|\n/);
+  );
+//console.log("villianstatsvillianstatsvillianstatsvillianstatsvillianstatsvillianstatsvillianstats");
+//console.log(villianstats);
 
   /*
   <td><%=data.users[i+1]%></td>
@@ -73,11 +78,37 @@ app.get('/stats', function(request, response) {
   //console.log(userss);
   var logged_in = false;
   usersar = userss.split(/,|\n/);
-  //  console.log(usersar);
+  usersarl = userss.split(/\n/);
+//  console.log(usersar);
 
+  //  console.log(usersar);
+var userstats = [];
+
+ for (var i = 0; i < usersarl.length-1; i++) {
+    userstats[i] = {};
+    for (var q = 0; q < 11; q++) {
+      userstats[i][usersar[q]]=usersar[i*11+q];
+    }
+  }
+  userstats.sort(function(a,b){
+if ((b.wins)/(b.tied+b.losses)) {
+}
+else {
+    return(-1);
+}
+if ((a.wins)/(a.tied+a.losses)) {
+}
+else {
+    return(1);
+}
+return ((b.wins)/(b.tied+b.losses+b.wins)) - ((a.wins)/(a.tied+a.losses+a.wins));
+    }
+  );
+
+console.log(userstats);
   var senddata = {
-    villains: fileContentar,
-    users: usersar
+    villains: villianstats,
+    users: userstats
   };
   response.render('stats', {
     data: senddata
@@ -95,13 +126,13 @@ app.get('/game', function(request, response) {
     name: request.query.username,
     password: request.query.password
   };
-  console.log(user_data);
+//  console.log(user_data);
   fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
-  console.log(fileContent);
+//  console.log(fileContent);
   var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
-  console.log(fileContentar);
-  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+4] == user_data.password && fileContentar[fileContentar.indexOf(user_data.name)+4] > 4) {
+//  console.log(fileContentar);
+  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password && fileContentar[fileContentar.indexOf(user_data.name)+1] > 4) {
     logged_in = true;
   }
 
