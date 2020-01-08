@@ -1,7 +1,6 @@
 {
   "name": "CS_PRS",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "dependencies": {
     "ejs": "^2.7.4",
@@ -24,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/david115599/CS_PRS/issues"
   },
-  "homepage": "https://github.com/david115599/CS_PRS#readme"
+  "homepage": "https://github.com/david115599/CS_PRS#readme",
+  "description": ""
 }
