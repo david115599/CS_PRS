@@ -132,9 +132,10 @@ app.get('/game', function(request, response) {
   var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
 //  console.log(fileContentar);
-  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password /*&& fileContentar[fileContentar.indexOf(user_data.name)+1] > 4*/) {
+  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password) {
     logged_in = true;
   }
+
   if (logged_in) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
