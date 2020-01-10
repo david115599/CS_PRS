@@ -164,14 +164,11 @@ else {
 return ((b.wins)/(b.tied+b.losses+b.wins)) - ((a.wins)/(a.tied+a.losses+a.wins));
     }
   );
-
-
   if (logged_in) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render('game', {
-      user: user_data,
-      villains: villianstats
+      user: user_data
     });
   } else {
     response.status(403);
