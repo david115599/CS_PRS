@@ -135,35 +135,6 @@ app.get('/game', function(request, response) {
   if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password /*&& fileContentar[fileContentar.indexOf(user_data.name)+1] > 4*/) {
     logged_in = true;
   }
-
-  fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
-//  console.log(fileContent);
-  var logged_in = false;
-  fileContentar = fileContent.split(/,|\n/);
-  filesortar = fileContent.split(/\n/);
-  var villianstats = [];
-  for (var i = 1; i < filesortar.length-1; i++) {
-    villianstats[i] = {};
-    for (var q = 0; q < 10; q++) {
-      villianstats[i][fileContentar[q]]=fileContentar[i*10+q];
-    }
-  }
-  //console.log(villianstats);
-
-  villianstats.sort(function(a,b){
-if ((b.wins)/(b.tied+b.losses)) {
-}
-else {
-    return(-1);
-}
-if ((a.wins)/(a.tied+a.losses)) {
-}
-else {
-    return(1);
-}
-return ((b.wins)/(b.tied+b.losses+b.wins)) - ((a.wins)/(a.tied+a.losses+a.wins));
-    }
-  );
   if (logged_in) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
