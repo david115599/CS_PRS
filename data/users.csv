@@ -1,4 +1,5 @@
 name,password,paper,rock,scissors,paper_strategy,rock_strategy,scissors_strategy,wins,tied,losses
+david,davi,1,1,1,1,1,1,1982,0,0
 mario,1234,1,1,1,1,1,1,10,0,8
 luigi,green_machine,1,1,1,1,1,1,9,2,6
 toad,i<3nyc,1,1,1,1,1,1,8,8,0
