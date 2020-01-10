@@ -132,7 +132,11 @@ app.get('/game', function(request, response) {
   var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
 //  console.log(fileContentar);
+<<<<<<< HEAD
   if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password) {
+=======
+  if (fileContentar.includes(user_data.name) && fileContentar.includes(user_data.password) && fileContentar[fileContentar.indexOf(user_data.name)+1] == user_data.password && fileContentar[fileContentar.indexOf(user_data.name)+1] > 4) {
+>>>>>>> parent of 364fcee... asd
     logged_in = true;
   }
 
