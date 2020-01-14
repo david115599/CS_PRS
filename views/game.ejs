@@ -14,31 +14,30 @@
   <div id="throw_choice">
     <h2>Play the Game</h2>
     <h4><%=user.name%> it's your turn to bust a move!</h4>
-    <form action="<%=user.name%>/game" method="post">
-      Enter your choice of weapon:<br>
-      <select name="weapon">
-        <option value=" "> </option>
-        <option value="paper">Paper</option>
-        <option value="rock">Rock</option>
-        <option value="scissors">Scissors</option>
-      </select><br>
-      <button type="submit" id="throw_choice_button">Throw Choice</button>
-    </form>
-<!-- <form action="<%=user.name%>/game" method="post">
-  Enter your choice of Villain:<br>
-  <select name="Villain">
-    <%for(var i = 0; i<data.users.length-1; i+=1){%>
-          <option><%=villains[i].name%></option>
-      <%}%>
-  </select><br>
-  <button type="submit" id="throw_choice_button">Throw Choice</button>
-</form>
--->
-  </div>
-  <footer>
-    Brought to you by the cool kids of Software Engineering - Fall, 2018.
-  </footer>
-  <script src="scripts/scripts.js"></script>
-</body>
 
-</html>
+      <form action="<%=user.name%>/game" method="post">
+        Enter your choice of Villain:<br>
+        <select name="Villain">
+          <option value=" "> </option>
+          <%for(var i = 0; i<user.villians.length-1; i+=1){%>
+            <option><%=user.villians[i].name%></option>
+            <%}%>
+          </select><br>
+        Enter your choice of weapon:<br>
+        <select name="weapon">
+          <option value=" "> </option>
+          <option value="paper">Paper</option>
+          <option value="rock">Rock</option>
+          <option value="scissors">Scissors</option>
+        </select><br>
+        <button type="submit" id="throw_choice_button">Throw Choice</button>
+      </form>
+
+    </div>
+    <footer>
+      Brought to you by the cool kids of Software Engineering - Fall, 2018.
+    </footer>
+    <script src="scripts/scripts.js"></script>
+  </body>
+
+  </html>

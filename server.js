@@ -122,9 +122,43 @@ app.get('/about', function(request, response) {
 });
 
 app.get('/game', function(request, response) {
+
+  fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
+  //  console.log(fileContent);
+  var logged_in = false;
+  fileContentar = fileContent.split(/,|\n/);
+  filesortar = fileContent.split(/\n/);
+  var villianstats = [];
+  for (var i = 1; i < filesortar.length-1; i++) {
+    villianstats[i] = {};
+    for (var q = 0; q < 10; q++) {
+      villianstats[i][fileContentar[q]]=fileContentar[i*10+q];
+    }
+  }
+  //console.log(villianstats);
+
+  villianstats.sort(function(a,b){
+  if ((b.wins)/(b.tied+b.losses)) {
+  }
+  else {
+    return(-1);
+  }
+  if ((a.wins)/(a.tied+a.losses)) {
+  }
+  else {
+    return(1);
+  }
+  return ((b.wins)/(b.tied+b.losses+b.wins)) - ((a.wins)/(a.tied+a.losses+a.wins));
+    }
+  );
+
+
+
+
   var user_data = {
     name: request.query.username,
-    password: request.query.password
+    password: request.query.password,
+    villians: villianstats
   };
 //  console.log(user_data);
   fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
@@ -152,7 +186,8 @@ app.get('/game', function(request, response) {
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
-    weapon: request.query.weapon
+    weapon: request.query.weapon,
+    villain: request.query.Villain
   };
 
   response.status(200);
