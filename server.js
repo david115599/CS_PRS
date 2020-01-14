@@ -125,7 +125,6 @@ app.get('/game', function(request, response) {
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   //  console.log(fileContent);
-  var logged_in = false;
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
   var villianstats = [];
@@ -187,11 +186,52 @@ app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
     weapon: request.query.weapon,
-    villain: request.query.Villain
+    villain: request.query.Villain,
+    vallianroll: 0
   };
 
+
+
+  fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
+  fileContentar = fileContent.split(/,|\n/);
+  filesortar = fileContent.split(/\n/);
+  var villianstats = [];
+  for (var i = 1; i < filesortar.length-1; i++) {
+    villianstats[i] = {};
+    for (var q = 0; q < 10; q++) {
+      villianstats[i][fileContentar[q]]=fileContentar[i*10+q];
+    }
+  }
+index = 0;
+for (var i = 0; i < villianstats.length; i++) {
+  if (villianstats.name == user_data.villain) {
+    index = i;
+  }
+}
+var paperstrat = parseFloat(villianstats[index].paper_strategy);
+var rockstrat = parseFloat(villianstats[index].rock_strategy);
+var scissorsstrat = parseFloat(villianstats[index].scissors_strategy);
+var villainroll=Math.random();
+var villainrollactual = 0;
+console.log(paperstrat +" "+rockstrat +" "+scissorsstrat +" "+villainroll);
+if (villainroll<=paperstrat) {
+villainrollactual=1
+}
+else if (villainroll>paperstrat && villainroll<=(paperstrat+rockstrat)) {
+villainrollactual=2
+}
+else if (villainroll>(rockstrat+paperstrat)) {
+villainrollactual=3
+}
+else {
+  villainrollactual = villainroll
+}
+user_data.vallianroll = villainrollactual
+//console.log(index);
+
+
   response.status(200);
-  response.setHeader('Content-Type', 'text/html')
+  response.setHeader('Content-Type', 'text/html'); ////this line is causing the error "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
   response.send(JSON.stringify(user_data));
-  response.render('results');
+  //response.render('results');
 });
