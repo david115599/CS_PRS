@@ -2,8 +2,11 @@ var express = require('express');
 var fs = require('fs');
 var favicon = require('serve-favicon');
 
+var bodyParser = require('body-parser')
 
 var app = express(); //Create an Express route
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static('public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -185,12 +188,13 @@ if (logged_in) {
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
-    weapon: request.query.weapon,
-    villain: request.query.Villain,
+    weapon: request.body.weapon,
+    villain: request.body.Villain,
     vallianroll: 0
   };
 
-
+console.log(user_data.weapon);
+console.log(user_data.villain);
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   fileContentar = fileContent.split(/,|\n/);
@@ -203,8 +207,9 @@ app.post('/:user/game', function(request, response) {
     }
   }
   index = 0;
-  for (var i = 0; i < villianstats.length; i++) {
-    if (villianstats.name == user_data.villain) {
+  for (var i = 1; i < villianstats.length; i++) {
+    console.log(villianstats);
+    if (villianstats[i].name == (user_data.villain)) {
       index = i;
     }
   }
@@ -236,5 +241,5 @@ app.post('/:user/game', function(request, response) {
   response.render('results', {
     user: user_data
   });
-  
+
 });
