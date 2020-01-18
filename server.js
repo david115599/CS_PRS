@@ -124,6 +124,7 @@ app.get('/about', function(request, response) {
   response.render('about');
 });
 
+
 app.get('/game', function(request, response) {
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
@@ -190,11 +191,12 @@ app.post('/:user/game', function(request, response) {
     name: request.params.user,
     weapon: request.body.weapon,
     villain: request.body.Villain,
-    vallianroll: 0
+    vallianroll: 0,
+    winner: 0
   };
 
-console.log(user_data.weapon);
-console.log(user_data.villain);
+  console.log(user_data.weapon);
+  console.log(user_data.villain);
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   fileContentar = fileContent.split(/,|\n/);
@@ -233,7 +235,38 @@ console.log(user_data.villain);
   }
   user_data.vallianroll = villainrollactual
   //console.log(index);
+  var userchoice = 0;
+  if (user_data.weapon == "paper") {
+    userchoice=1;
+  }
+  if (user_data.weapon == "rock") {
+    userchoice=2;
+  }
+  if (user_data.weapon == "scissors") {
+    userchoice=3;
+  }
 
+  if (userchoice == villainrollactual) {
+    user_data.winner = 0
+  }
+  else if (userchoice == 1 && villainrollactual == 2) {
+    user_data.winner = 1
+  }
+  else if (userchoice == 1 && villainrollactual == 3) {
+    user_data.winner = 2
+  }
+  else if (userchoice == 2 && villainrollactual == 1) {
+    user_data.winner = 2
+  }
+  else if (userchoice == 2 && villainrollactual == 3) {
+    user_data.winner = 2
+  }
+  else if (userchoice == 3 && villainrollactual == 1) {
+    user_data.winner = 1
+  }
+  else if (userchoice == 2 && villainrollactual == 2) {
+    user_data.winner = 2
+  }
 
   response.status(200);
   response.setHeader('Content-Type', 'text/html'); ////this line is causing the error "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"

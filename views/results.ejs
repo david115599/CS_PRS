@@ -8,25 +8,26 @@
 
 <body>
   <% include global/header %>
-<!--    name: request.params.user,
-    weapon: request.query.weapon,
-    villain: request.query.Villain,
-    vallianroll: 0
--->
+
   <div id="feedback">
   </div>
   <div id="throw_choice">
+<% var villainweapon;%>
+<% if(user.vallianroll == 1){villainweapon = "paper"} if(user.vallianroll == 2){villainweapon = "rock"} if(user.vallianroll == 3){villainweapon = "scissors"}%>
+
     <h2>Play the Game</h2>
-  <h1><%=user.vallianroll%></h1>
-  <h1><%=user.weapon%></h1>
-<h1><%=user.villain%></h1>
-<h1><%=user.name%></h1>
+    <h1><%=user.vallianroll%></h1>
+    <img src="/images/<%=user.villain%>_<%=villainweapon%>.svg" alt="Italian Trulli">
+    <h1><%=user.weapon%></h1>
+    <h1><%=user.villain%></h1>
+    <h1><%=user.name%></h1>
+    <h1><%=user.winner%></h1>
 
-    </div>
-    <footer>
-      Brought to you by the cool kids of Software Engineering - Fall, 2018.
-    </footer>
-    <script src="scripts/scripts.js"></script>
-  </body>
+  </div>
+  <footer>
+    Brought to you by the cool kids of Software Engineering - Fall, 2018.
+  </footer>
+  <script src="scripts/scripts.js"></script>
+</body>
 
-  </html>
+</html>
