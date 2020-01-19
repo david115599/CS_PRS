@@ -124,7 +124,6 @@ app.get('/about', function(request, response) {
   response.render('about');
 });
 
-
 app.get('/game', function(request, response) {
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});

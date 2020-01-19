@@ -3,7 +3,7 @@
 
 <head>
   <title>P,R,S - Game</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
@@ -12,22 +12,24 @@
   <div id="feedback">
   </div>
   <div id="throw_choice">
-<% var villainweapon;%>
-<% if(user.vallianroll == 1){villainweapon = "paper"} if(user.vallianroll == 2){villainweapon = "rock"} if(user.vallianroll == 3){villainweapon = "scissors"}%>
-
+    <% var villainweapon;%>
+    <% if(user.vallianroll == 1){villainweapon = "paper"} if(user.vallianroll == 2){villainweapon = "rock"} if(user.vallianroll == 3){villainweapon = "scissors"}%>
+    <% var winner;%>
+    <% if(user.winner == 1){winner = "Player"} if(user.winner == 2){winner = "Villian"} if(user.winner == 0){winner = "Tie"}%>
+  <%var villain = (user.villain).replace("%20", "_");%>
     <h2>Play the Game</h2>
-    <h1><%=user.vallianroll%></h1>
-    <img src="/images/<%=user.villain%>_<%=villainweapon%>.svg" alt="Italian Trulli">
-    <h1><%=user.weapon%></h1>
     <h1><%=user.villain%></h1>
+    <img src="/images/<%=villain%>_<%=villainweapon%>.svg"alt="Image" height="42" width="42">
     <h1><%=user.name%></h1>
-    <h1><%=user.winner%></h1>
+    <p><%=user.weapon%></p>
+    <h1>Winner</h1>
+    <p><%=winner%></p>
 
   </div>
   <footer>
     Brought to you by the cool kids of Software Engineering - Fall, 2018.
   </footer>
-  <script src="scripts/scripts.js"></script>
+  <script src="../scripts/scripts.js"></script>
 </body>
 
 </html>
