@@ -201,15 +201,16 @@ app.post('/:user/game', function(request, response) {
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
   var villianstats = [];
-  for (var i = 1; i < filesortar.length-1; i++) {
+  for (var i = 0; i < filesortar.length-1; i++) {
     villianstats[i] = {};
     for (var q = 0; q < 10; q++) {
       villianstats[i][fileContentar[q]]=fileContentar[i*10+q];
     }
   }
   index = 0;
-  for (var i = 1; i < villianstats.length; i++) {
-    console.log(villianstats);
+console.log(villianstats);
+  for (var i = 0; i < villianstats.length; i++) {
+  //villianstats[i].name.split(' ').join('_');
     if (villianstats[i].name == (user_data.villain)) {
       index = i;
     }
