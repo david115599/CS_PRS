@@ -14,14 +14,16 @@
   <div id="throw_choice">
     <h2>Play the Game</h2>
     <h4><%=user.name%> it's your turn to bust a move!</h4>
-      <form action="<%=user.name%>/game" method="post">
-        Enter your choice of Villain:<br>
-        <select name="Villain">
-          <option value=" "> </option>
-          <%for(var i = 0; i<user.villians.length-1; i+=1){%>
-            <option><%=user.villians[i].name%></option>
-            <%}%>
-          </select><br>
+    <p id = waiting></p>
+    <form action="<%=user.name%>/game" method="post">
+      Enter your choice of Villain:<br>
+      <select name="Villain"  onmouseover="script(this.form.villain)">
+        <option value=" "> </option>
+        <%for(var i = 0; i<user.villians.length-1; i+=1){%>
+          <option><%=user.villians[i].name%> </option>
+          <%}%>
+        </select>
+        <br>
         Enter your choice of weapon:<br>
         <select name="weapon">
           <option value=" "> </option>
@@ -37,6 +39,11 @@
       Brought to you by the cool kids of Software Engineering - Fall, 2018.
     </footer>
     <script src="scripts/scripts.js"></script>
+    <script>
+    function script(vill) {
+      document.getElementById("waiting").innerHTML = '<img scr = "/images/'+vill+'_waiting.svg"alt="Image" height="42" width="42">';
+    }
+    </script>
   </body>
 
   </html>

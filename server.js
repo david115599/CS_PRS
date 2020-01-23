@@ -108,7 +108,7 @@ userstats.sort(function(a,b){
 }
 );
 
-console.log(userstats);
+//console.log(userstats);
 var senddata = {
   villains: villianstats,
   users: userstats
@@ -194,8 +194,8 @@ app.post('/:user/game', function(request, response) {
     winner: 0
   };
 
-  console.log(user_data.weapon);
-  console.log(user_data.villain);
+  //  console.log(user_data.weapon);
+  //  console.log(user_data.villain);
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   fileContentar = fileContent.split(/,|\n/);
@@ -208,9 +208,9 @@ app.post('/:user/game', function(request, response) {
     }
   }
   index = 0;
-console.log(villianstats);
+  //console.log(villianstats);
   for (var i = 0; i < villianstats.length; i++) {
-  //villianstats[i].name.split(' ').join('_');
+    //villianstats[i].name.split(' ').join('_');
     if (villianstats[i].name == (user_data.villain)) {
       index = i;
     }
@@ -220,7 +220,7 @@ console.log(villianstats);
   var scissorsstrat = parseFloat(villianstats[index].scissors_strategy);
   var villainroll=Math.random();
   var villainrollactual = 0;
-  console.log(paperstrat +" "+rockstrat +" "+scissorsstrat +" "+villainroll);
+  //  console.log(paperstrat +" "+rockstrat +" "+scissorsstrat +" "+villainroll);
   if (villainroll<=paperstrat) {
     villainrollactual=1
   }
@@ -251,6 +251,24 @@ console.log(villianstats);
   }
   else if (userchoice == 1 && villainrollactual == 2) {
     user_data.winner = 1
+  /*  //  fs.writeFile("/data/villains.csv", fileContentar);
+    var csvwritecon = [];
+    var next = false;
+    var nextindex = 0;
+    for (var i = 0; i < fileContentar.length; i++) {
+      if (i%9  == 0 && i != 0) {
+        csvwritecon.push(fileContentar[i]+"\n");
+        next = true;
+        nextindex = i;
+      }
+      else {
+        csvwritecon.push(fileContentar[i]);
+      }
+
+    }
+    // = fileContentar
+    fs.writeFileSync('data/villains.csv', csvwritecon, 'utf8', function (err) {
+    });*/
   }
   else if (userchoice == 1 && villainrollactual == 3) {
     user_data.winner = 2
@@ -267,7 +285,6 @@ console.log(villianstats);
   else if (userchoice == 2 && villainrollactual == 2) {
     user_data.winner = 2
   }
-
   response.status(200);
   response.setHeader('Content-Type', 'text/html'); ////this line is causing the error "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
   //response.send(JSON.stringify(user_data))
