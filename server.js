@@ -205,7 +205,7 @@ app.post('/:user/game', function(request, response) {
   usersar = userss.split(/,|\n/);
   usersarl = userss.split(/\n/);
   var userstats = [];
-  for (var i = 1; i < usersarl.length-1; i++) {
+  for (var i = 1; i < usersarl.length; i++) {
     userstats[i-1] = {};
     for (var q = 0; q < 11; q++) {
       userstats[i-1][usersar[q]]=usersar[i*11+q];
@@ -217,7 +217,7 @@ app.post('/:user/game', function(request, response) {
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
   var villianstats = [];
-  for (var i = 1; i < filesortar.length-1; i++) {
+  for (var i = 1; i < filesortar.length; i++) {
     villianstats[i-1] = {};
     for (var q = 0; q < 10; q++) {
       villianstats[i-1][fileContentar[q]]=fileContentar[i*10+q];
@@ -250,16 +250,16 @@ app.post('/:user/game', function(request, response) {
     }
   }
   if (villainroll<=paperstrat) {
-  villainrollactual=1
-  villianstats[villianindex].paper = parseInt(villianstats[villianindex].paper)+1;
+    villainrollactual=1
+    villianstats[villianindex].paper = parseInt(villianstats[villianindex].paper)+1;
   }
   else if (villainroll>paperstrat && villainroll<=(paperstrat+rockstrat)) {
     villainrollactual=2
-  villianstats[villianindex].rock = parseInt(villianstats[villianindex].rock)+1;
+    villianstats[villianindex].rock = parseInt(villianstats[villianindex].rock)+1;
   }
   else if (villainroll>(rockstrat+paperstrat)) {
     villainrollactual=3
-  villianstats[villianindex].scissors = parseInt(villianstats[villianindex].scissors)+1;
+    villianstats[villianindex].scissors = parseInt(villianstats[villianindex].scissors)+1;
   }
   else {
     villainrollactual = villainroll
@@ -314,50 +314,50 @@ app.post('/:user/game', function(request, response) {
   user_data.villianindex = villianindex;
   user_data.allusers = userstats;
   user_data.allvillains = villianstats;
-console.log(usersarl.length);
-console.log(filesortar.length);
+  console.log(usersarl.length);
+  console.log(filesortar.length);
   var temparray = []
-  temparray[0] = usersarl[0];
-  for (var i = 1; i < usersarl.length-1; i++) {
+  for (var i = 0; i < userstats.length; i++) {
     var temparray2 = []
     //console.log(temparray.length)
-    temparray2.push(userstats[i-1].name);
-    temparray2.push(userstats[i-1].password);
-    temparray2.push(userstats[i-1].paper);
-    temparray2.push(userstats[i-1].rock);
-    temparray2.push(userstats[i-1].scissors);
-    temparray2.push(userstats[i-1].paper_strategy);
-    temparray2.push(userstats[i-1].rock_strategy);
-    temparray2.push(userstats[i-1].scissors_strategy);
-    temparray2.push(userstats[i-1].wins);
-    temparray2.push(userstats[i-1].tied);
-    temparray2.push(userstats[i-1].losses);
+    temparray2.push(userstats[i].name);
+    temparray2.push(userstats[i].password);
+    temparray2.push(userstats[i].paper);
+    temparray2.push(userstats[i].rock);
+    temparray2.push(userstats[i].scissors);
+    temparray2.push(userstats[i].paper_strategy);
+    temparray2.push(userstats[i].rock_strategy);
+    temparray2.push(userstats[i].scissors_strategy);
+    temparray2.push(userstats[i].wins);
+    temparray2.push(userstats[i].tied);
+    temparray2.push(userstats[i].losses);
     temparray[i] = temparray2.join()
   }
+  temparray.unshift(usersarl[0]);
   // = fileContentar
-  //fs.writeFileSync('data/users.csv', temparray.join('\n'), 'utf8', function (err) {
-  //});
+  fs.writeFileSync('data/users.csv', temparray.join('\n'), 'utf8', function (err) {
+  });
 
   temparray = []
-  temparray[0] = filesortar[0];
-  for (var i = 1; i < filesortar.length-1; i++) {
+  for (var i = 0; i < villianstats.length; i++) {
     var temparray2 = []
     //console.log(temparray.length)
-    temparray2.push(villianstats[i-1].name);
-    temparray2.push(villianstats[i-1].paper);
-    temparray2.push(villianstats[i-1].rock);
-    temparray2.push(villianstats[i-1].scissors);
-    temparray2.push(villianstats[i-1].paper_strategy);
-    temparray2.push(villianstats[i-1].rock_strategy);
-    temparray2.push(villianstats[i-1].scissors_strategy);
-    temparray2.push(villianstats[i-1].wins);
-    temparray2.push(villianstats[i-1].tied);
-    temparray2.push(villianstats[i-1].losses);
+    temparray2.push(villianstats[i].name);
+    temparray2.push(villianstats[i].paper);
+    temparray2.push(villianstats[i].rock);
+    temparray2.push(villianstats[i].scissors);
+    temparray2.push(villianstats[i].paper_strategy);
+    temparray2.push(villianstats[i].rock_strategy);
+    temparray2.push(villianstats[i].scissors_strategy);
+    temparray2.push(villianstats[i].wins);
+    temparray2.push(villianstats[i].tied);
+    temparray2.push(villianstats[i].losses);
     temparray[i] = temparray2.join()
   }
+  temparray.unshift(filesortar[0]);
   // = fileContentar
-  //fs.writeFileSync('data/villains.csv', temparray.join('\n'), 'utf8', function (err) {
-  //});
+  fs.writeFileSync('data/villains.csv', temparray.join('\n'), 'utf8', function (err) {
+  });
 
 
   response.status(200);
