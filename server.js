@@ -196,6 +196,18 @@ app.post('/:user/game', function(request, response) {
 
   //  console.log(user_data.weapon);
   //  console.log(user_data.villain);
+  userss = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
+  var logged_in = false;
+  usersar = userss.split(/,|\n/);
+  usersarl = userss.split(/\n/);
+  var userstats = [];
+  for (var i = 0; i < usersarl.length-1; i++) {
+    userstats[i] = {};
+    for (var q = 0; q < 11; q++) {
+      userstats[i][usersar[q]]=usersar[i*11+q];
+    }
+  }
+
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   fileContentar = fileContent.split(/,|\n/);
@@ -251,24 +263,7 @@ app.post('/:user/game', function(request, response) {
   }
   else if (userchoice == 1 && villainrollactual == 2) {
     user_data.winner = 1
-  /*  //  fs.writeFile("/data/villains.csv", fileContentar);
-    var csvwritecon = [];
-    var next = false;
-    var nextindex = 0;
-    for (var i = 0; i < fileContentar.length; i++) {
-      if (i%9  == 0 && i != 0) {
-        csvwritecon.push(fileContentar[i]+"\n");
-        next = true;
-        nextindex = i;
-      }
-      else {
-        csvwritecon.push(fileContentar[i]);
-      }
-
-    }
-    // = fileContentar
-    fs.writeFileSync('data/villains.csv', csvwritecon, 'utf8', function (err) {
-    });*/
+    //  fs.writeFile("/data/villains.csv", fileContentar);
   }
   else if (userchoice == 1 && villainrollactual == 3) {
     user_data.winner = 2
@@ -285,6 +280,51 @@ app.post('/:user/game', function(request, response) {
   else if (userchoice == 2 && villainrollactual == 2) {
     user_data.winner = 2
   }
+
+  var temparray = []
+  temparray[0] = usersarl[0];
+  for (var i = 1; i < usersarl.length-1; i++) {
+    var temparray2 = []
+    //console.log(temparray.length)
+    temparray2.push(userstats[i].name);
+    temparray2.push(userstats[i].password);
+    temparray2.push(userstats[i].paper);
+    temparray2.push(userstats[i].rock);
+    temparray2.push(userstats[i].scissors);
+    temparray2.push(userstats[i].paper_strategy);
+    temparray2.push(userstats[i].rock_strategy);
+    temparray2.push(userstats[i].scissors_strategy);
+    temparray2.push(userstats[i].wins);
+    temparray2.push(userstats[i].tied);
+    temparray2.push(userstats[i].losses);
+    temparray[i] = temparray2.join()
+  }
+  // = fileContentar
+  fs.writeFileSync('data/users.csv', temparray.join('\n'), 'utf8', function (err) {
+  });
+
+  temparray = []
+  temparray[0] = filesortar[0];
+  for (var i = 1; i < filesortar.length-1; i++) {
+    var temparray2 = []
+    //console.log(temparray.length)
+    temparray2.push(villianstats[i].name);
+    temparray2.push(villianstats[i].paper);
+    temparray2.push(villianstats[i].rock);
+    temparray2.push(villianstats[i].scissors);
+    temparray2.push(villianstats[i].paper_strategy);
+    temparray2.push(villianstats[i].rock_strategy);
+    temparray2.push(villianstats[i].scissors_strategy);
+    temparray2.push(villianstats[i].wins);
+    temparray2.push(villianstats[i].tied);
+    temparray2.push(villianstats[i].losses);
+    temparray[i] = temparray2.join()
+  }
+  // = fileContentar
+  fs.writeFileSync('data/villains.csv', temparray.join('\n'), 'utf8', function (err) {
+  });
+
+
   response.status(200);
   response.setHeader('Content-Type', 'text/html'); ////this line is causing the error "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
   //response.send(JSON.stringify(user_data))
