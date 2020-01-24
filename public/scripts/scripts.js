@@ -49,3 +49,10 @@ function toggleVisibility(button_element, div_element){
       }
   });
 }
+function script(vill) {
+  document.getElementById("waiting").innerHTML = '<img src= "/images/'+(document.getElementById("vchoice").value).replace(" ","_").replace(".","")+'_waiting.svg"alt="Image" height="42" width="42">';
+}
+
+function ref(ref) {
+  document.getElementById("wait").innerHTML = '<img src= "/images/ref/watch.svg"alt="Image" height="42" width="42">';
+}

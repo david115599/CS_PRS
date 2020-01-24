@@ -18,7 +18,7 @@
     <% if(user.winner == 1){winner = "Player"} if(user.winner == 2){winner = "Villian"} if(user.winner == 0){winner = "Tie"}%>
     <h2>Play the Game</h2>
     <h1><%=user.villain%></h1>
-    <img src="/images/<%=user.villain.replace(" ","_")%>_<%=villainweapon%>.svg"alt="Image" height="42" width="42">
+    <img src="/images/<%=user.villain.replace(" ","_").replace(".","")%>_<%=villainweapon%>.svg"alt="Image" height="42" width="42">
     <h1><%=user.name%></h1>
     <p><%=user.weapon%></p>
     <h1>Winner</h1>
@@ -31,64 +31,60 @@
         <th class="top_row">Games Tied</th>
         <th class="top_row">Games Lost</th>
         <th class="top_row">Win/Loss Ratio</th>
-        <th class="top_row">Win%</th>
         <th class="top_row">Paper</th>
         <th class="top_row">Rock</th>
         <th class="top_row">Scissors</th>
       </tr>
 
       <ul>
-          <a href="/<=user.allusers[user.userindex]%>/game">
-            <tr>
-              <th><%=user.allusers[user.userindex].name%></th>
-              <td><%=user.allusers[user.userindex].wins%></td>
-              <td><%=user.allusers[user.userindex].tied%> </td>
-              <td><%=user.allusers[user.userindex].losses%> </td>
-              <td><%=user.allusers[user.userindex].wins/user.allusers[user.userindex].losses%> </td>
-              <td><%=(user.allusers[user.userindex].wins/(user.allusers[user.userindex].wins+user.allusers[user.userindex].tied+user.allusers[user.userindex].losses)*10000)%> </td>
-              <th><%=user.allusers[user.userindex].paper%></th>
-              <th><%=user.allusers[user.userindex].rock%></th>
-              <th><%=user.allusers[user.userindex].scissors%></th>
+        <a href="/<=user.allusers[user.userindex]%>/game">
+          <tr>
+            <th><%=user.allusers[user.userindex].name%></th>
+            <td><%=user.allusers[user.userindex].wins%></td>
+            <td><%=user.allusers[user.userindex].tied%> </td>
+            <td><%=user.allusers[user.userindex].losses%> </td>
+            <td><%=user.allusers[user.userindex].wins%>:<%=user.allusers[user.userindex].losses%> </td>
+            <th><%=user.allusers[user.userindex].paper%></th>
+            <th><%=user.allusers[user.userindex].rock%></th>
+            <th><%=user.allusers[user.userindex].scissors%></th>
 
-            </tr>
-          </a>
-        </ul>
-      </table>
-      <table>
-        <tr>
-          <th class="top_row">Player Name</th>
-          <th class="top_row">Games Won</th>
-          <th class="top_row">Games Tied</th>
-          <th class="top_row">Games Lost</th>
-          <th class="top_row">Win/Loss Ratio</th>
-          <th class="top_row">Win%</th>
-          <th class="top_row">Paper</th>
-          <th class="top_row">Rock</th>
-          <th class="top_row">Scissors</th>
-        </tr>
-        <tr>
-          <ul>
-    <tr>
-      <th><%=user.allvillains[user.villianindex].name%></th>
-      <td><%=user.allvillains[user.villianindex].wins%></td>
-      <td><%=user.allvillains[user.villianindex].tied%> </td>
-      <td><%=user.allvillains[user.villianindex].losses%> </td>
-      <td><%=user.allvillains[user.villianindex].wins/user.allvillains[user.villianindex].losses%> </td>
-      <td><%=(user.allvillains[user.villianindex].wins/(user.allvillains[user.villianindex].wins+user.allvillains[user.villianindex].tied+user.allvillains[user.villianindex].losses))*10000%> </td>
-      <th><%=user.allvillains[user.villianindex].paper%></th>
-      <th><%=user.allvillains[user.villianindex].rock%></th>
-      <th><%=user.allvillains[user.villianindex].scissors%></th>
-    </tr>
-  </a>
-</ul>
-</table>
-  <a href="/login">Play</a>
+          </tr>
+        </a>
+      </ul>
+    </table>
+    <table>
+      <tr>
+        <th class="top_row">Player Name</th>
+        <th class="top_row">Games Won</th>
+        <th class="top_row">Games Tied</th>
+        <th class="top_row">Games Lost</th>
+        <th class="top_row">Win/Loss Ratio</th>
+        <th class="top_row">Paper</th>
+        <th class="top_row">Rock</th>
+        <th class="top_row">Scissors</th>
+      </tr>
+      <tr>
+        <ul>
+          <tr>
+            <th><%=user.allvillains[user.villianindex].name%></th>
+            <td><%=user.allvillains[user.villianindex].wins%></td>
+            <td><%=user.allvillains[user.villianindex].tied%> </td>
+            <td><%=user.allvillains[user.villianindex].losses%> </td>
+            <td><%=user.allvillains[user.villianindex].wins%>:<%=user.allvillains[user.villianindex].losses%> </td>
+            <th><%=user.allvillains[user.villianindex].paper%></th>
+            <th><%=user.allvillains[user.villianindex].rock%></th>
+            <th><%=user.allvillains[user.villianindex].scissors%></th>
+          </tr>
+        </a>
+      </ul>
+    </table>
+    <a href="/login">Play</a>
 
-</div>
-<footer>
-  Brought to you by the cool kids of Software Engineering - Fall, 2018.
-</footer>
-<script src="../scripts/scripts.js"></script>
+  </div>
+  <footer>
+    Brought to you by the cool kids of Software Engineering - Fall, 2018.
+  </footer>
+  <script src="../scripts/scripts.js"></script>
 </body>
 
 </html>

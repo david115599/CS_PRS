@@ -335,7 +335,7 @@ app.post('/:user/game', function(request, response) {
   }
   temparray.unshift(usersarl[0]);
   // = fileContentar
-  fs.writeFileSync('data/users.csv', temparray.join('\n'), 'utf8', function (err) {
+  fs.writeFileSync('data/users.csv', (temparray.filter(function (val) {return val != null;}).join('\n')), 'utf8', function (err) {
   });
 
   temparray = []
@@ -356,7 +356,7 @@ app.post('/:user/game', function(request, response) {
   }
   temparray.unshift(filesortar[0]);
   // = fileContentar
-  fs.writeFileSync('data/villains.csv', temparray.join('\n'), 'utf8', function (err) {
+  fs.writeFileSync('data/villains.csv', (temparray.filter(function (val) {return val != null;}).join('\n')), 'utf8', function (err) {
   });
 
 
