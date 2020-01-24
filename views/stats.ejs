@@ -30,7 +30,7 @@
               <td><%=data.users[i].tied%> </td>
               <td><%=data.users[i].losses%> </td>
               <td><%=data.users[i].wins/data.users[i].losses%> </td>
-              <td><%=(data.users[i].wins/(data.users[i].losses+data.users[i].tied+data.users[i].wins))%> </td>
+              <td><%=((data.users[i].wins)/(data.users[i].wins+data.users[i].tied+data.users[i].losses))*10000%> </td>
               <th><%=data.users[i].paper%></th>
               <th><%=data.users[i].rock%></th>
               <th><%=data.users[i].scissors%></th>
@@ -62,7 +62,7 @@
                   <td><%=data.villains[i].tied%> </td>
                   <td><%=data.villains[i].losses%> </td>
                   <td><%=data.villains[i].wins/data.villains[i].losses%> </td>
-                  <td><%=(data.villains[i].wins/(data.villains[i].losses+data.villains[i].tied+data.villains[i].wins))*10000%> </td>
+                  <td><%=(data.villains[i].wins/(data.villains[i].wins+data.villains[i].tied+data.villains[i].losses)*10000)%> </td>
                   <th><%=data.villains[i].paper%></th>
                   <th><%=data.villains[i].rock%></th>
                   <th><%=data.villains[i].scissors%></th>

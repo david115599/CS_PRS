@@ -45,7 +45,7 @@
               <td><%=user.allusers[user.userindex].tied%> </td>
               <td><%=user.allusers[user.userindex].losses%> </td>
               <td><%=user.allusers[user.userindex].wins/user.allusers[user.userindex].losses%> </td>
-              <td><%=(user.allusers[user.userindex].wins/(user.allusers[user.userindex].losses+user.allusers[user.userindex].tied+user.allusers[user.userindex].wins))%> </td>
+              <td><%=(user.allusers[user.userindex].wins/(user.allusers[user.userindex].wins+user.allusers[user.userindex].tied+user.allusers[user.userindex].losses)*10000)%> </td>
               <th><%=user.allusers[user.userindex].paper%></th>
               <th><%=user.allusers[user.userindex].rock%></th>
               <th><%=user.allusers[user.userindex].scissors%></th>
@@ -74,7 +74,7 @@
       <td><%=user.allvillains[user.villianindex].tied%> </td>
       <td><%=user.allvillains[user.villianindex].losses%> </td>
       <td><%=user.allvillains[user.villianindex].wins/user.allvillains[user.villianindex].losses%> </td>
-      <td><%=(user.allvillains[user.villianindex].wins/(user.allvillains[user.villianindex].losses+user.allvillains[user.villianindex].tied+user.allvillains[user.villianindex].wins))*10000%> </td>
+      <td><%=(user.allvillains[user.villianindex].wins/(user.allvillains[user.villianindex].wins+user.allvillains[user.villianindex].tied+user.allvillains[user.villianindex].losses))*10000%> </td>
       <th><%=user.allvillains[user.villianindex].paper%></th>
       <th><%=user.allvillains[user.villianindex].rock%></th>
       <th><%=user.allvillains[user.villianindex].scissors%></th>
