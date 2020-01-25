@@ -1,4 +1,6 @@
 var player_name = localStorage.getItem("player_name");
+var fs = require('fs');
+
 
 if(!player_name){
   showOrNot(document.getElementById("enter_name"), true);
@@ -50,7 +52,45 @@ function toggleVisibility(button_element, div_element){
   });
 }
 function script(vill) {
-  document.getElementById("waiting").innerHTML = '<img src= "/images/'+(document.getElementById("vchoice").value).replace(" ","_").replace(".","")+'_waiting.svg"alt="Image" height="42" width="42">';
+
+var answer;
+if ((document.getElementById("vchoice").value) == "Bones") {
+answer = "is known for bieng attacked and eaten by dogs when he walks down the street";
+}
+if ((document.getElementById("vchoice").value) == "Comic Hans") {
+answer = "the son of Comic Sans and has horrible handwriting";
+}
+if ((document.getElementById("vchoice").value) == "Gato") {
+answer = "Gato is Gato and tends to purr and hide when humans approach";
+}
+if ((document.getElementById("vchoice").value) == "Harry") {
+answer = " has dropped out of wizarding school and now makes a living of PRS and does side jobs for voldimort";
+}
+if ((document.getElementById("vchoice").value) == "Manny") {
+answer = "Plays PRS becuase he plans to take over the world with his statistics";
+}
+if ((document.getElementById("vchoice").value) == "Mickey") {
+answer = "is trying to Purchase PRS for Disney Inc";
+}
+if ((document.getElementById("vchoice").value) == "Mr. Modern") {
+answer = "is compensating for using depricated methods";
+}
+if ((document.getElementById("vchoice").value) == "Pixie") {
+answer = "was expelled from wizarding school for distributing dust";
+}
+if ((document.getElementById("vchoice").value) == "Regal") {
+answer = "has lost all of his lands and titles";
+}
+if ((document.getElementById("vchoice").value) == "Spock") {
+answer = "Intends to live long and prosper by playing PRS";
+}
+if ((document.getElementById("vchoice").value) == "The Boss") {
+answer = " is currently peeling potatoes in the kitchen becuase of his demotion";
+}
+if ((document.getElementById("vchoice").value) == "The Magician") {
+answer = " == discount dumbledore";
+}
+  document.getElementById("waiting").innerHTML = '<img src= "/images/'+(document.getElementById("vchoice").value).replace(" ","_").replace(".","")+'_waiting.svg"alt="Image" height="42" width="42"> <h2>Background:</h2> <h2>'+(document.getElementById("vchoice").value)+'  '+answer+'</h2>';
 }
 
 function ref(ref) {
