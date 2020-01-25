@@ -1,3 +1,7 @@
+
+////////////////////////////////////////////////////
+Imports libraries and configures express
+////////////////////////////////////////////////////
 var express = require('express');
 var fs = require('fs');
 var favicon = require('serve-favicon');
@@ -11,12 +15,16 @@ app.use(express.static('public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(favicon(__dirname + '/public/images/logo1.png'));
-
+////////////////////////////////////////////////////
+//Server Port
+////////////////////////////////////////////////////
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log('Server started at ' + new Date() + ', on port ' + port + '!');
 });
-
+////////////////////////////////////////////////////
+//The section below this deals with routing
+////////////////////////////////////////////////////
 app.get('/', function(request, response) {
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -36,7 +44,9 @@ app.get('/logout', function(request, response) {
 app.get('/stats', function(request, response) {
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-
+  ////////////////////////////////////////////////////
+  //Lods user and villian data
+  ////////////////////////////////////////////////////
 
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   //  console.log(fileContent);
@@ -44,6 +54,9 @@ app.get('/stats', function(request, response) {
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
   var villianstats = [];
+  ////////////////////////////////////////////////////
+  //Loads data into array object
+  ////////////////////////////////////////////////////
   for (var i = 1; i < filesortar.length-1; i++) {
     villianstats[i] = {};
     for (var q = 0; q < 10; q++) {
@@ -51,7 +64,9 @@ app.get('/stats', function(request, response) {
     }
   }
   //console.log(villianstats);
-
+  ////////////////////////////////////////////////////
+  //Sorts by win %
+  ////////////////////////////////////////////////////
   villianstats.sort(function(a,b){
     if ((b.wins)/(b.tied+b.losses)) {
     }
@@ -76,7 +91,9 @@ app.get('/stats', function(request, response) {
 */
 
 
-
+////////////////////////////////////////////////////
+//Repeats same as above but for users
+////////////////////////////////////////////////////
 userss = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
 //console.log(userss);
 var logged_in = false;
@@ -109,6 +126,9 @@ userstats.sort(function(a,b){
 );
 
 //console.log(userstats);
+////////////////////////////////////////////////////
+//loads user and villain data into variable and sends to client
+////////////////////////////////////////////////////
 var senddata = {
   villains: villianstats,
   users: userstats
@@ -118,6 +138,7 @@ response.render('stats', {
 });
 });
 
+
 app.get('/about', function(request, response) {
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -125,7 +146,9 @@ app.get('/about', function(request, response) {
 });
 
 app.get('/game', function(request, response) {
-
+  ////////////////////////////////////////////////////
+  //loads villain data
+  ////////////////////////////////////////////////////
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   //  console.log(fileContent);
   fileContentar = fileContent.split(/,|\n/);
@@ -163,6 +186,9 @@ var user_data = {
   villians: villianstats
 };
 //  console.log(user_data);
+////////////////////////////////////////////////////
+//loads user data
+////////////////////////////////////////////////////
 fileContent = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
 //  console.log(fileContent);
 var logged_in = false;
@@ -185,6 +211,9 @@ if (logged_in) {
 }
 });
 
+////////////////////////////////////////////////////
+//handles post request
+////////////////////////////////////////////////////
 app.post('/:user/game', function(request, response) {
   var user_data = {
     name: request.params.user,
@@ -200,6 +229,9 @@ app.post('/:user/game', function(request, response) {
 
   //  console.log(user_data.weapon);
   //  console.log(user_data.villain);
+  ////////////////////////////////////////////////////
+  //load data
+  ////////////////////////////////////////////////////
   userss = fs.readFileSync("data/users.csv", {encoding: 'utf8'});
   var logged_in = false;
   usersar = userss.split(/,|\n/);
@@ -212,7 +244,9 @@ app.post('/:user/game', function(request, response) {
     }
   }
 
-
+  ////////////////////////////////////////////////////
+  //load data
+  ////////////////////////////////////////////////////
   fileContent = fs.readFileSync("data/villains.csv", {encoding: 'utf8'});
   fileContentar = fileContent.split(/,|\n/);
   filesortar = fileContent.split(/\n/);
@@ -231,6 +265,9 @@ app.post('/:user/game', function(request, response) {
       index = i;
     }
   }
+  ////////////////////////////////////////////////////
+  //calculates villian roll
+  ////////////////////////////////////////////////////
   var paperstrat = parseFloat(villianstats[index].paper_strategy);
   var rockstrat = parseFloat(villianstats[index].rock_strategy);
   var scissorsstrat = parseFloat(villianstats[index].scissors_strategy);
@@ -266,6 +303,10 @@ app.post('/:user/game', function(request, response) {
   }
   user_data.vallianroll = villainrollactual
   //console.log(index);
+
+  ////////////////////////////////////////////////////
+  //compares user and villain rolls and determines winners
+  ////////////////////////////////////////////////////
   var userchoice = 0;
   if (user_data.weapon == "paper") {
     userchoice=1;
@@ -317,6 +358,9 @@ app.post('/:user/game', function(request, response) {
   console.log(usersarl.length);
   console.log(filesortar.length);
   var temparray = []
+  ////////////////////////////////////////////////////
+  //updates csv's with updated statistics
+  ////////////////////////////////////////////////////
   for (var i = 0; i < userstats.length; i++) {
     var temparray2 = []
     //console.log(temparray.length)
@@ -359,10 +403,13 @@ app.post('/:user/game', function(request, response) {
   fs.writeFileSync('data/villains.csv', (temparray.filter(function (val) {return val != null;}).join('\n')), 'utf8', function (err) {
   });
 
-
+  ////////////////////////////////////////////////////
+  //renders results
+  ////////////////////////////////////////////////////
   response.status(200);
   response.setHeader('Content-Type', 'text/html'); ////this line is causing the error "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
   //response.send(JSON.stringify(user_data))
+console.log(user_data);
   response.render('results', {
     user: user_data
   });
