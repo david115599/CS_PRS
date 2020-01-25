@@ -1,6 +1,6 @@
 
 ////////////////////////////////////////////////////
-Imports libraries and configures express
+//Imports libraries and configures express
 ////////////////////////////////////////////////////
 var express = require('express');
 var fs = require('fs');
